@@ -1,3 +1,4 @@
+import 'package:examen_final_garcia/models/arbre.dart';
 import 'package:examen_final_garcia/models/models.dart';
 import 'package:examen_final_garcia/provider/databases/crud_provider.dart';
 import 'package:examen_final_garcia/screens/details_screen.dart';
@@ -41,8 +42,15 @@ class FirebaseCRUDScreen<T extends BaseModel> extends StatelessWidget {
         itemCount: provider.items.length,
         itemBuilder: (context, index) {
           final item = provider.items[index];
+          var title = item.toString();
+          var subtitle = '';
+          if (T == Arbre) {
+            title = (item as Arbre).nom!;
+            subtitle = (item as Arbre).varietat!;
+          }
           return ListTile(
-            title: Text(item.toString()),
+            title: Text(title),
+            subtitle: Text(subtitle),
             onTap: () {
               provider.selectedItem = item;
 

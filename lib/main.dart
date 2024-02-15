@@ -1,4 +1,5 @@
 import 'package:examen_final_garcia/firebase_options.dart';
+import 'package:examen_final_garcia/models/arbre.dart';
 import 'package:examen_final_garcia/provider/provider.dart';
 import 'package:examen_final_garcia/routes/routes.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -32,6 +33,9 @@ class MainApp extends StatelessWidget {
         ChangeNotifierProvider<MapsMarks>(
           create: (context) => MapsMarks(),
         ),
+        ChangeNotifierProvider(
+            create: (_) => CRUDProvider<Arbre>(
+                RTDBCRUDhttp(path: '/arbres', fromMap: Arbre.fromMap))),
       ],
       child: MaterialApp(
         routes: routes,

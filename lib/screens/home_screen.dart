@@ -11,6 +11,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final currentUser =
         Provider.of<CurrentUserProvider>(context, listen: false).currentUser;
+    final mapsProvider = Provider.of<MapsMarks>(context, listen: true);
 
     return BaseScreen(
       title: 'Home Screen',
@@ -32,6 +33,7 @@ class HomeScreen extends StatelessWidget {
           }, onCancel: () {
             print('canceled');
           }),
+          Text(mapsProvider.markers.length.toString()),
         ],
       ),
     );

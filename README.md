@@ -1,3 +1,1 @@
-# examen_final_garcia
-
-A new Flutter project.
+A l' enunciat no especifica si el formulari de arbre ha de tenir un checkbox per al valor true

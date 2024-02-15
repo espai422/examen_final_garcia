@@ -1,3 +1,4 @@
+import 'package:examen_final_garcia/provider/api/api_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
@@ -6,7 +7,7 @@ class MapsMarks extends ChangeNotifier {
     // ADD A MARKER FOR PALMA DE MALLORCA
     // Marker(
     //   markerId: MarkerId('1'),
-    //   position: const LatLng(39.8729607, 3.0256346),
+    //   position: const LatLng(40.4165, -3.7026),
     //   infoWindow: const InfoWindow(title: 'Palma de Mallorca'),
     //   icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueViolet),
     // ),
@@ -19,6 +20,42 @@ class MapsMarks extends ChangeNotifier {
     //   icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueViolet),
     // ),
   };
+
+  MapsMarks() {
+    _init();
+  }
+
+  _init() async {
+    // get ip
+    final ipProvider = ApiProvider('https://api.ipify.org/?format=json');
+    final ipdata = await ipProvider.fetchJsonData('');
+    final ip = ipdata['ip'];
+
+    // get cords of IP
+    final cordsProvider = ApiProvider('https://ipinfo.io/');
+    final cordsData = await cordsProvider.fetchJsonData('$ip/geo');
+    String cords = cordsData['loc'];
+    double lat = double.parse(cords.split(',')[0]);
+    double lng = double.parse(cords.split(',')[1]);
+    final marker =
+        // Marker(
+        //   markerId: MarkerId('Ip position'),
+        //   position: LatLng(
+        //     double.parse(cords.split(',')[0]),
+        //     double.parse(cords.split(',')[1]),
+        //   ),
+        //   infoWindow: const InfoWindow(title: 'Ip position'),
+        //   icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueViolet),
+        // );
+        Marker(
+      markerId: MarkerId('1'),
+      position: LatLng(lat, lng),
+      infoWindow: const InfoWindow(title: 'Palma de Mallorca'),
+      icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueViolet),
+    );
+    addMarker(marker);
+    notifyListeners();
+  }
 
   void addMarker(Marker marker) {
     _markers.add(marker);

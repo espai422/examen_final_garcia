@@ -15,6 +15,8 @@ class SideMenu extends StatelessWidget {
           _DrawerHeader(),
           MenuOption(title: 'Home', route: '/home-screen', icon: Icons.home),
           MenuOption(title: 'Maps', route: '/maps-screen', icon: Icons.map),
+          MenuOption(
+              title: 'Arbres', route: '/arbre-screen', icon: Icons.nature),
         ],
       ),
     );

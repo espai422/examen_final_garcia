@@ -23,13 +23,9 @@ class _MapsScreenState extends State<MapsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // Retrieve the ScanModel from the route arguments.
-    // final ScanModel scan =
-    //     ModalRoute.of(context)!.settings.arguments as ScanModel;
-
-    final markers = Provider.of<MapsMarks>(context).markers;
-    final centerMarker = markers.toList().elementAtOrNull(0) ??
-        Marker(markerId: MarkerId('default'), position: LatLng(1, 1));
+    final provider = Provider.of<MapsMarks>(context, listen: true);
+    final markers = provider.markers;
+    final centerMarker = markers.toList().elementAtOrNull(0)!;
 
     return Scaffold(
       drawer: SideMenu(),
