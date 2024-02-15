@@ -7,6 +7,9 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
 
 /// Widget for displaying a map with a specific scan's location using Google Maps.
+/// It also allows the user to re-center the map and toggle the tilt.
+/// It uses the GoogleMap widget from the google_maps_flutter package.
+/// It also uses the MapsMarks provider to get the scan's location and display it on the map.
 class MapsScreen extends StatefulWidget {
   const MapsScreen({Key? key}) : super(key: key);
 
@@ -25,7 +28,16 @@ class _MapsScreenState extends State<MapsScreen> {
   Widget build(BuildContext context) {
     final provider = Provider.of<MapsMarks>(context, listen: true);
     final markers = provider.markers;
-    final centerMarker = markers.toList().elementAtOrNull(0)!;
+    final centerMarker = markers.toList().elementAtOrNull(0) ??
+        Marker(markerId: MarkerId('default'), position: LatLng(1, 1));
+
+    if (centerMarker.position.latitude == 1) {
+      return const Scaffold(
+        body: Center(
+          child: CircularProgressIndicator(),
+        ),
+      );
+    }
 
     return Scaffold(
       drawer: SideMenu(),

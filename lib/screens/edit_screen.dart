@@ -3,6 +3,9 @@ import 'package:examen_final_garcia/provider/databases/crud_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+/// EditCRUDScreen is a screen to edit the item of a CRUD
+/// This screen will show the details of the selected item in the provider
+/// is a generic screen for any model that extends BaseModel
 class EditCRUDScreen<T extends BaseModel> extends StatelessWidget {
   const EditCRUDScreen({super.key});
 

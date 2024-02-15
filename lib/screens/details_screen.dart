@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:examen_final_garcia/utils/fields_exceptions.dart';
 
+/// Details screen for the CRUD
+/// This screen will show the details of the selected item in the provider
+/// is a generic screen for any model that extends BaseModel
 class DetailsScreen<T extends BaseModel> extends StatelessWidget {
   const DetailsScreen({super.key});
 
