@@ -35,7 +35,7 @@ class MapsMarks extends ChangeNotifier {
     final marker = Marker(
       markerId: MarkerId('1'),
       position: LatLng(lat, lng),
-      infoWindow: const InfoWindow(title: 'Palma de Mallorca'),
+      infoWindow: InfoWindow(title: cordsData['org']),
       icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueViolet),
     );
     addMarker(marker);
